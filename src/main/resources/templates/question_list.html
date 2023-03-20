@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>Question List</title>
@@ -14,7 +14,9 @@
         </thead>
         <tbody>
             <tr th:each="question : ${questionList}">
-                <td th:text="${question.subject}"></td>
+                <td>
+                    <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
+                </td>
                 <td th:text="${question.content}"></td>
             </tr>
         </tbody>
