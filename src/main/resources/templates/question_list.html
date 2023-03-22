@@ -1,5 +1,4 @@
-<html layout:decorate="~{layout}" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html layout:decorate="~{layout}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <div layout:fragment="content" class="container my-3">
     <table class="table">
         <thead class="table-dark">
@@ -28,7 +27,7 @@
                     <span>Previous</span>
                 </a>
             </li>
-            <li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
+            <li th:each="page: ${#numbers.sequence(1, paging.totalPages-1)}"
                 th:if="${page >= paging.number-5 and page <= paging.number+5}"
                 th:classappend="${page == paging.number} ? 'active'"
                 class="page-item">
