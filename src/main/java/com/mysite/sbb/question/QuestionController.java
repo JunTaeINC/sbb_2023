@@ -4,6 +4,7 @@ import com.mysite.sbb.answer.AnswerForm;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +18,7 @@ public class QuestionController {
 
     private final QuestionService questionService;
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/list")
     public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page) {
         Page<Question> paging = this.questionService.getList(page);
@@ -24,6 +26,7 @@ public class QuestionController {
         return "question_list";
     }
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping(value = "/detail/{id}")
     public String detail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm) {
         Question question = this.questionService.getQuestion(id);
