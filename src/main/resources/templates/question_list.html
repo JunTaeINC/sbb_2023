@@ -7,7 +7,11 @@
     </thead>
     <tbody>
     <tr th:each="question : ${questionList}">
-        <td th:text="${question.subject}"></td>
+        <td>
+            <!--자바 객체의 값을 더할 때는 반드시 다음처럼 |과 | 기호로 좌우를 감싸 주어야 한다. -->
+            <!-- th:href 처럼 URL 주소를 나타낼때는 반드시 @{ 문자와 } 문자 사이에 입력 -->
+            <a th:herf="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
+        </td>
         <td th:text="${question.createDate}"></td>
     </tr>
     </tbody>
