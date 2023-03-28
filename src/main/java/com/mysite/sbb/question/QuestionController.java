@@ -3,15 +3,11 @@ package com.mysite.sbb.question;
 import com.mysite.sbb.answer.AnswerForm;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 
 // final 이 붙은 속성을 포함하는 생성자를 자동으로 생성
@@ -29,9 +25,10 @@ public class QuestionController {
 
     @GetMapping("/list")
     // Model 객체는 자바 클래스와 템플릿 간의 연결고리 역할
-    public String list(Model model) {
-        List<Question> questionList = questionService.getList();
-        model.addAttribute("questionList", questionList);
+    // @RequestParam GET 방식으로 요청된 URL 에서 page 값을 가져오기 위해
+    public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page) {
+        Page<Question> paging = questionService.getList(page);
+        model.addAttribute("paging", paging);
         return "question_list";
     }
 
