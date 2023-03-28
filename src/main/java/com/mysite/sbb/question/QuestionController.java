@@ -18,10 +18,6 @@ public class QuestionController {
 
     private final QuestionService questionService;
 
-    @GetMapping("/")
-    public String root() {
-        return "redirect:/question/list";
-    }
 
     @GetMapping("/list")
     // Model 객체는 자바 클래스와 템플릿 간의 연결고리 역할
