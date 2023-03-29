@@ -30,9 +30,11 @@ public class QuestionController {
     @GetMapping("/list")
     // Model 객체는 자바 클래스와 템플릿 간의 연결고리 역할
     // @RequestParam GET 방식으로 요청된 URL 에서 page 값을 가져오기 위해
-    public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page) {
-        Page<Question> paging = questionService.getList(page);
+    public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page
+            , @RequestParam(value = "kw", defaultValue = "") String kw) {
+        Page<Question> paging = questionService.getList(page, kw);
         model.addAttribute("paging", paging);
+        model.addAttribute("kw", kw);
         return "question_list";
     }
 
