@@ -79,7 +79,7 @@
         <textarea sec:authorize="isAnonymous()" disabled th:field="*{content}" class="form-control"
                   rows="10"></textarea>
         <textarea sec:authorize="isAuthenticated()" th:field="*{content}" class="form-control" rows="10"></textarea>
-        <input type="submit" value="Submit" class="btn btn-primary my-2">
+        <input type="submit" value="Submit" class="my-2 btn btn-outline-primary float-end">
     </form>
 </div>
 <script layout:fragment="script" type='text/javascript'>
