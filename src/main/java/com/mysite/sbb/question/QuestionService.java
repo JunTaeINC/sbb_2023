@@ -23,13 +23,16 @@ public class QuestionService {
     private final QuestionRepository questionRepository;
 
     public List<Question> getList() {
-        return this.questionRepository.findAll();
+        return questionRepository.findAll();
     }
 
     public Question getQuestion(Integer id) {
-        Optional<Question> question = this.questionRepository.findById(id);
+        Optional<Question> question = questionRepository.findById(id);
         if (question.isPresent()) {
-            return question.get();
+            Question _question = question.get();
+            _question.setViewCount(_question.getViewCount() + 1);
+            questionRepository.save(_question);
+            return _question;
         } else {
             throw new DataNotFoundException("question not found");
         }
@@ -49,7 +52,7 @@ public class QuestionService {
         sorts.add(Sort.Order.desc("createDate"));
         Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
         Specification<Question> spec = search(kw);
-        return this.questionRepository.findAll(spec, pageable);
+        return questionRepository.findAll(spec, pageable);
         //return this.questionRepository.findAllByKeyword(kw, pageable);
     }
 
@@ -57,16 +60,16 @@ public class QuestionService {
         question.setSubject(subject);
         question.setContent(content);
         question.setModifyDate(LocalDateTime.now());
-        this.questionRepository.save(question);
+        questionRepository.save(question);
     }
 
     public void delete(Question question) {
-        this.questionRepository.delete(question);
+        questionRepository.delete(question);
     }
 
     public void vote(Question question, SiteUser siteUser) {
         question.getVoter().add(siteUser);
-        this.questionRepository.save(question);
+        questionRepository.save(question);
     }
 
     private Specification<Question> search(String kw) {
