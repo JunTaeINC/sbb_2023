@@ -1,35 +1,9 @@
 <html layout:decorate="~{layout}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sec="http://www.w3.org/1999/xhtml">
 <div layout:fragment="content" class="container">
-    <h1 class="my-3" sec:authorize="isAuthenticated()" th:text="|${#authentication.principal.username}|님 환영합니다."></h1>
+    <h1 class="my-3" sec:authorize="isAuthenticated()" th:text="|${#authentication.principal.username}님 환영합니다.|"></h1>
 
-<!--    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"-->
-<!--            data-target="#navbarNav" aria-controls="navbarNav"-->
-<!--            aria-expanded="false" aria-label="Toggle navigation">-->
-<!--        <i class="fas fa-align-justify"></i>-->
-<!--    </button>-->
 
-<!--    <div class="collapse navbar-collapse" id="navbarNav">-->
-<!--        <ul class="nav navbar-nav ml-auto">-->
-<!--            <li class="nav-item ">-->
-<!--                <a class="nav-link" href="/"><i class="fas fa-trophy"></i> 랭킹</a>-->
-<!--            </li>-->
-<!--            <li class="nav-item ">-->
-<!--                <a class="nav-link" href="/"><i class="fas fa-history"></i> 최근이력</a>-->
-<!--            </li>-->
-
-<!--            <li class="nav-item ">-->
-<!--                <a class="nav-link" href="/"><i class="fas fa-cog"></i> 계정설정</a>-->
-<!--            </li>-->
-<!--            <li class="nav-item">-->
-<!--                <a class="nav-link profile-link" href="/"><i class="fas fa-user-alt"></i> user1111</a>-->
-<!--            </li>-->
-<!--            <li class="nav-item ">-->
-<!--                <a class="nav-link" href="/"><i class="fas fa-sign-out-alt"></i> 로그아웃</a>-->
-<!--            </li>-->
-
-<!--        </ul>-->
-<!--    </div>-->
 
 
 </div>
